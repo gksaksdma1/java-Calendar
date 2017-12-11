@@ -1,9 +1,36 @@
 package joonho.calendar;
 
+import java.util.Scanner;
+
 public class Calendar {
 	
+	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	public int getMaxDaysOfMonth(int month) {
+		return MAX_DAYS[month - 1];
+	}
+
 	public static void main(String[] args) {
-		System.out.println("Hello, Calendar");
+		String PROMPT = "cal> ";
+		Scanner scanner = new Scanner(System.in);
+		Calendar cal = new Calendar();
+		
+		int month = 1;
+		while ( true ) {
+		System.out.println("달을 입력하세요");
+		System.out.print(PROMPT);
+		month = scanner.nextInt();
+		if (month == -1) {
+			break;
+		}
+		
+		if (month > 12) {
+			continue; // 루프의 처음으로
+		}
+		System.out.printf("%d월은 %d일까지 있습니다. \n", month, cal.getMaxDaysOfMonth(month));
+		}
+		System.out.println("bye~");
+		scanner.close();
 	}
 
 }
